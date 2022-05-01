@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    _controller.colorSubscription.cancel();
+    // _controller.colorSubscription.cancel();
     super.dispose();
   }
 

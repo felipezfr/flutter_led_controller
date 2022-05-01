@@ -1,54 +1,31 @@
-import 'dart:async';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_led_controller/repositories/firebase_repository.dart';
+import 'package:flutter_led_controller/repositories/firebase_repository_imp.dart';
 
 class HomeController {
+  final FirebasRepository _firebasRepository = FirebaseRepositoryImp(
+    FirebaseDatabase.instance.ref("users/felipe2/quarto"),
+  );
+
   HomeController() {
-    initDb();
+    init();
   }
 
   ValueNotifier<Color> pickerColor =
       ValueNotifier<Color>(const Color(0xFF26B6CF));
 
-  late final DatabaseReference _dbRef;
-  late StreamSubscription<DatabaseEvent> colorSubscription;
-
-  void initDb() async {
-    _dbRef = FirebaseDatabase.instance.ref("users/felipe2/quarto");
-
+  void init() async {
     try {
-      final _colorSnapshot = await _dbRef.get();
-
-      var color = _colorSnapshot.value as Map;
-      pickerColor.value = Color.fromRGBO(
-        color["r"]!,
-        color["g"]!,
-        color["b"]!,
-        color["o"] * 1.0,
-      );
+      pickerColor.value = await _firebasRepository.getColor();
     } catch (e) {
       debugPrint(e.toString());
     }
 
-    colorSubscription = _dbRef.onValue.listen((DatabaseEvent event) {
-      var color = event.snapshot.value as Map;
-
-      pickerColor.value = Color.fromRGBO(
-        color["r"]!,
-        color["g"]!,
-        color["b"]!,
-        color["o"] * 1.0,
-      );
-    });
+    // _firebasRepository.colorSubscription();
   }
 
   void changeColor(Color color) async {
-    _dbRef.set({
-      "r": color.red,
-      "g": color.green,
-      "b": color.blue,
-      "o": color.opacity,
-    });
+    _firebasRepository.setColor(color);
   }
 }
