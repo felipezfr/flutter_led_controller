@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "562482690615",
+    "firebase_url": "https://appledcontroller-default-rtdb.firebaseio.com",
+    "project_id": "appledcontroller",
+    "storage_bucket": "appledcontroller.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562482690615:android:5085738f200000cb10ddb2",
+        "android_client_info": {
+          "package_name": "com.example.flutter_led_controller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562482690615-3g6mlm7h79icqbol07cq80jf09u9frgh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYv2l2hRWCCDrCwfMcatiROEU_wSWnTLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562482690615-3g6mlm7h79icqbol07cq80jf09u9frgh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
